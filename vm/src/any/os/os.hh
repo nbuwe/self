@@ -37,7 +37,7 @@ class OS {
  
   // Starting and stopping the VM:
   static void init();
-  static void terminate(int); // do not call this exit to avoid bugs
+  static __self_dead void terminate(int); // do not call this exit to avoid bugs
   static void handle_suspend_and_resume(bool stopping);
 
   

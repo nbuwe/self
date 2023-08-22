@@ -70,7 +70,7 @@ class InterruptedContext {
   void set_the_self_thread();
   
   // fatal menu helper fns
-  static void quit_self();
+  static __self_dead void quit_self();
   static void print_stack();
          void print_C_stack();
   static void print_registers();

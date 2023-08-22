@@ -30,14 +30,14 @@ class NLRSupport /* AllStatic */ {
   
   
   // for non-local returns coming from C
-  static void volatile continue_NLR_into_Self(bool removePatches);
+  static __self_dead void continue_NLR_into_Self(bool removePatches);
                                                    // to continue the NLR after C cleanup
 
   static void save_NLR_results(oop res, int32 targetFrame = 0, int32 targetID = 0);
 
   static bool is_bad_home_reference(char* addr);
   
-  static void volatile unwind_stack_to_kill_process(oop res);
+  static __self_dead void unwind_stack_to_kill_process(oop res);
   
   // Handling nonlifo block NLRs from compiled code  
 # if defined(FAST_COMPILER) || defined(SIC_COMPILER)
@@ -51,7 +51,7 @@ class NLRSupport /* AllStatic */ {
 
   
  private:
-  static volatile void continue_NLR_into_interpreted_Self();
-  static volatile void continue_NLR_from_compiled_nonLIFO_block(frame* vmf);
-  static volatile void continue_NLR_into_compiled_Self(bool remove_patches, frame* vmf);
+  static __self_dead void continue_NLR_into_interpreted_Self();
+  static __self_dead void continue_NLR_from_compiled_nonLIFO_block(frame* vmf);
+  static __self_dead void continue_NLR_into_compiled_Self(bool remove_patches, frame* vmf);
 };

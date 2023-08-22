@@ -156,11 +156,11 @@ void error_breakpoint() {
   (void)junk;
 }
 
-volatile void ShouldNotCall(const char *file, int line) {
+__self_dead void ShouldNotCall(const char *file, int line) {
   lprint_fatal(file, line, "Calling member function which shouldn't be called");
 }
 
-volatile void ShouldNotReach(const char *file, int line) {
+__self_dead void ShouldNotReach(const char *file, int line) {
   lprint_fatal(file, line, "Reached supposedly impossible case");
 }
 

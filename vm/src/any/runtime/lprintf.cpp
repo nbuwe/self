@@ -86,7 +86,7 @@ extern "C" void lprint_warning(lprint_format_t msg, ...) {
   PrintVMMessages = saved;
 }
 
-extern "C" volatile void lprint_fatal(const char* file, int line, lprint_format_t msg, ...) {
+extern "C" __self_dead void lprint_fatal(const char* file, int line, lprint_format_t msg, ...) {
   bool saved = PrintVMMessages; PrintVMMessages = true;
   lprintf("Self VM fatal error (%s, line %ld): ", file, (void*)line );
   va_list ap;
@@ -96,9 +96,11 @@ extern "C" volatile void lprint_fatal(const char* file, int line, lprint_format_
   lprintf("\n");
   PrintVMMessages = saved;
   fatal_handler();
+  // nested fatal_handler returns, don't touch that can of worms for now
+  SELF_UNREACHABLE();
 }
 
-extern "C" volatile void lprint_fatalNoMenu(const char* file, int line, lprint_format_t msg, ...) {
+extern "C" __self_dead void lprint_fatalNoMenu(const char* file, int line, lprint_format_t msg, ...) {
   Unused(file);
   Unused(line);
   bool saved = PrintVMMessages; PrintVMMessages = true;
@@ -140,12 +142,12 @@ volatile void fatal_handler() {
 
 static const int max_len = 500; // really 509 but I'll be conservative
 // I wrote these becase MetroWerks crashes on a %.*s where length is > 509 or something
-void volatile lprintf_string(int len, const char* bytes) {
+void lprintf_string(int len, const char* bytes) {
   for (char *p = (char*)bytes, *end = (char*)bytes + len;  p  <  end;  p += max_len)
     lprintf("%.*s", min(max_len,  end - p), p);
 }
 
-void volatile lsprintf_string(char* buf, int len, const char* bytes) {
+void lsprintf_string(char* buf, int len, const char* bytes) {
   for (char *p = (char*)bytes, *end = (char*)bytes + len, *dst = buf;  p  <  end;  p += max_len,  dst += max_len)
     sprintf(dst, "%.*s", min(max_len,  end - p), p);
 }

@@ -86,7 +86,7 @@ void InterruptedContext::fatal_menu() {
   }
 }
 
-void InterruptedContext::quit_self() {
+__self_dead void InterruptedContext::quit_self() {
   lprintf("Enter snapshot name (hit return to omit snapshot) > ");
   char c[255];
   c[0] = '\0';
@@ -192,14 +192,6 @@ void InterruptedContext::continue_abort_at(char *addr, bool addDummyFrame) {
   // make sure set_continuation_address works
   the_interrupted_context->set_next_pc(the_interrupted_context->pc() + 4);
   set_continuation_address(addr, true, true);
-}
-
-
-
-volatile void fatal_handler() {
-  error_breakpoint();
-  SignalInterface::simulate_fatal_signal();
-  OS::terminate(-1);
 }
 
 

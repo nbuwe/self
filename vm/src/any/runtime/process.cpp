@@ -57,7 +57,7 @@ bool isOnVMStack(void* sp) {            // just a guess
   return (char*)sp <= vmStackEnd  &&  (char*)sp > vmStackEnd - 500000;
 }
 
-void Process::transfer() {
+__self_dead void Process::transfer() {
   bool initializingDstProcStack;
   
   printP("transferring to", this);
@@ -248,8 +248,8 @@ void Process::start() {
 
 
 // Resulting oop is interpreted by start above
-volatile void Process::abort_process()     { NLRSupport::unwind_stack_to_kill_process(badOop); }
-volatile void Process::terminate_process() { NLRSupport::unwind_stack_to_kill_process(0); }
+__self_dead void Process::abort_process()     { NLRSupport::unwind_stack_to_kill_process(badOop); }
+__self_dead void Process::terminate_process() { NLRSupport::unwind_stack_to_kill_process(0); }
 
 
 
@@ -286,11 +286,12 @@ bool Process::allocate() {
 // The process termination functions could be written more concisely
 // using macros, but it would be a pain to debug.
 
-void terminateMe() {
+__self_dead void terminateMe() {
   if (currentProcess == twainsProcess) twainsProcess = NULL;
   void (* p)() = processTermFunc;
   processTermFunc = NULL;       // clear it for assertions
   p();
+  ShouldNotReachHere();
 }
 
 static void checkAbort(PrimDesc* pd) {
@@ -335,14 +336,16 @@ void Process::kill() {
   }     
 }
 
-void Process::terminate() {
+__self_dead void Process::terminate() {
   processTermFunc = (void (*)()) &terminate_process;
   kill();
+  ShouldNotReachHere();
 }
 
-void Process::abort() {
+__self_dead void Process::abort() {
   processTermFunc = (void (*)()) &abort_process;
   kill();
+  ShouldNotReachHere();
 }
 
 void Process::setStopPoint(vframeOop stop) {

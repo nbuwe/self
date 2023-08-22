@@ -27,8 +27,8 @@ extern "C" {
   void PrimCallReturnTrap();
   void ProfilerTrap();
 
-  void volatile ContinueNLRAfterReturnTrap(char* pc, char* sp, oop result,
-                                           frame* home, int32 homeID);
+  void __self_dead ContinueNLRAfterReturnTrap(char* pc, char* sp, oop result,
+					      frame* home, int32 homeID);
   void firstSelfFrame_returnPC(...);
   void firstSelfFrameSendDescEnd(...);
     
@@ -88,13 +88,13 @@ extern "C" {
   //                        (ensure trap if return past top)
   //                        clear semaphore, jump to calleeSaveAddr[1]
   
-  void  SetSPAndCall(char** callerSaveAddr, char** calleeSaveAddr,
-                     bool init, bool8* semaphore, bool8 pcWasSet); 
+  __self_dead void SetSPAndCall(char** callerSaveAddr, char** calleeSaveAddr,
+				bool init, bool8* semaphore, bool8 pcWasSet); 
   
   oop EnterSelf(oop recv, char* entryPoint, oop arg1);
         // call nmethod with given receiver and 1st arg
-  oop volatile ContinueNLRFromC(char* addr, bool isInterpreted, bool isSelfIC);
-  void volatile DiscardStack();
+  __self_dead oop ContinueNLRFromC(char* addr, bool isInterpreted, bool isSelfIC);
+  __self_dead void DiscardStack();
 }
 
 

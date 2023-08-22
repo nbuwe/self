@@ -1331,6 +1331,7 @@ lprintf.cpp                   types.hh
 lprintf.cpp                   util.hh
 
 lprintf.hh                    os_includes.hh
+lprintf.hh                    macros.hh
 
 
 machineCache.cpp              label_inline.hh

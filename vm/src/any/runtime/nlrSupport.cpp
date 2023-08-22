@@ -65,7 +65,7 @@ void   NLRSupport::set_NLR_home_from_C(int32 x)    { NLRHomeFromC = x; }
 void   NLRSupport::set_NLR_home_ID_from_C(int32 x) { NLRHomeIDFromC = x; }
 
 
-volatile void NLRSupport::continue_NLR_into_Self(bool remove_patches) {
+__self_dead void NLRSupport::continue_NLR_into_Self(bool remove_patches) {
   processSemaphore = true;
   frame* vmf = currentProcess->stack()->first_VM_frame();
   assert(!vmf->is_self_frame() && vmf->sender()->is_self_frame(),
@@ -82,7 +82,7 @@ volatile void NLRSupport::continue_NLR_into_Self(bool remove_patches) {
 }
 
 
-volatile void NLRSupport::continue_NLR_into_interpreted_Self() {
+__self_dead void NLRSupport::continue_NLR_into_interpreted_Self() {
   set_have_NLR_through_C(); // interp needs this
   frame* f =
     currentProcess->stack()->interpreter_frame_for_continuing_NLR_from_primitive();
@@ -92,7 +92,7 @@ volatile void NLRSupport::continue_NLR_into_interpreted_Self() {
 }
 
 
-volatile void NLRSupport::continue_NLR_from_compiled_nonLIFO_block(frame* vmf) {
+__self_dead void NLRSupport::continue_NLR_from_compiled_nonLIFO_block(frame* vmf) {
   reset_have_NLR_through_C(); // normally clear this when resuming NLR in compiled code
   // either a trap instruction or a load; skip bottommost frame because
   // it has no proper inline cache to return through
@@ -104,7 +104,7 @@ volatile void NLRSupport::continue_NLR_from_compiled_nonLIFO_block(frame* vmf) {
 }
 
 
-volatile void NLRSupport::continue_NLR_into_compiled_Self(bool remove_patches, frame* vmf) {
+__self_dead void NLRSupport::continue_NLR_into_compiled_Self(bool remove_patches, frame* vmf) {
   reset_have_NLR_through_C(); // normally clear this when resuming NLR in compiled code
   char* ret_addr = vmf->sender()->real_return_addr();
   char* vm_addr  = vmf->return_addr();
@@ -149,7 +149,7 @@ bool NLRSupport::is_bad_home_reference(char* addr) {
 
 // use NLR mechanism to unwind process stack when killing
 
-void volatile NLRSupport::unwind_stack_to_kill_process(oop res) {
+__self_dead void NLRSupport::unwind_stack_to_kill_process(oop res) {
   save_NLR_results(res);
   ResetMonitor sa; // tell the spy
   continue_NLR_into_Self(true); // reuse NLR for abort

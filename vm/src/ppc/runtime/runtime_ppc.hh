@@ -11,7 +11,7 @@
 // interface between C and assembly routines 
 
 extern "C" {
-  void volatile ContinueAfterReturnTrap(oop result, char* pc, char* sp);
+  __self_dead void ContinueAfterReturnTrap(oop result, char* pc, char* sp);
   inline bool is_Self_return_address(char*) { return false; } // not really used
 }
 

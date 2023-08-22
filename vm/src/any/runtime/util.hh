@@ -150,9 +150,9 @@ inline void UsedOnlyInAssert(double x)   { (void)(x), 0; }
 inline void UsedOnlyInAssert(void  *x)   { (void)(x), 0; }
 #endif
 
-extern "C" { 
-  volatile void ShouldNotCall(const char *file, int line);
-  volatile void ShouldNotReach(const char *file, int line);
+extern "C" {
+  __self_dead void ShouldNotCall(const char *file, int line);
+  __self_dead void ShouldNotReach(const char *file, int line);
 }
 
 #define ShouldNotCallThis()   ShouldNotCall(__FILE__, __LINE__)

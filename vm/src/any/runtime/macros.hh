@@ -56,6 +56,27 @@
   
 # endif
 
+#ifdef __GNUC__
+#define __SELF_GNUC_PREREQ__(x, y)                                      \
+        ((__GNUC__ == (x) && __GNUC_MINOR__ >= (y)) ||                  \
+         (__GNUC__ > (x)))
+#else
+#define __SELF_GNUC_PREREQ__(x, y)      0
+#endif
+
+#if __SELF_GNUC_PREREQ__(2, 5)
+#define __self_dead     __attribute__((__noreturn__))
+#elif defined(__GNUC__)
+#define __self_dead     __volatile
+#else
+#define __self_dead
+#endif
+
+#if __SELF_GNUC_PREREQ__(4, 5)
+#define SELF_UNREACHABLE() __builtin_unreachable()
+#else
+#define SELF_UNREACHABLE() do {} while(0)
+#endif
 
 
 // ------------------------ Type and value checking macros -------------------- 

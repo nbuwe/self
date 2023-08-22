@@ -21,10 +21,10 @@ extern "C" void lprintf(lprint_format_t m, ...);
 extern "C" void lprint_error(lprint_format_t m, ...);
                         
 extern "C" void lprint_warning(lprint_format_t m, ...);
-                        
-extern "C" void volatile lprint_fatal(const char* file, int line, lprint_format_t m, ...);
-                        
-extern "C" void volatile lprint_fatalNoMenu(const char* file, int line, lprint_format_t m, ...);
+
+extern "C" __self_dead void lprint_fatal(const char* file, int line, lprint_format_t m, ...);
+
+extern "C" __self_dead void lprint_fatalNoMenu(const char* file, int line, lprint_format_t m, ...);
 
 // like sprintf, but updates the buf pointer so that subsequent
 // sprintf invocations append to the string
@@ -33,8 +33,8 @@ extern "C" void mysprintf(char*& buf, lprint_format_t fmt, ...);
 void flush_logFile();
 
 
-extern "C" void volatile lprintf_string(int len, const char* bytes);
-extern "C" void volatile lsprintf_string(char* buf, int len, const char* bytes);
+extern "C" void lprintf_string(int len, const char* bytes);
+extern "C" void lsprintf_string(char* buf, int len, const char* bytes);
 
 
 

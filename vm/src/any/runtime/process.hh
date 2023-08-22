@@ -109,13 +109,13 @@ class Process: public CHeapObj {
   bool hasStack() { return stk.base != NULL; }
   bool allocate();
   void start();
-  void terminate();                     
-  void abort();
-  void transfer();                      // coroutine transfer to this process
-  
+  __self_dead void terminate();
+  __self_dead void abort();
+  __self_dead void transfer();          // coroutine transfer to this process
+
   // termination functions
-  static void volatile abort_process();
-  static void volatile terminate_process();
+  static __self_dead void abort_process();
+  static __self_dead void terminate_process();
 
 
   void setupPreemption()   { setSPLimit(stackEnd()); } // set up for preemption

@@ -18,7 +18,7 @@
 
 
 extern "C" {
-  void volatile ContinueAfterReturnTrap(char* pc, char* sp);
+  __self_dead void ContinueAfterReturnTrap(char* pc, char* sp);
 
 
   // SPARC VM uses differing calling conventions for primitive (and C) calls

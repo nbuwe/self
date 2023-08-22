@@ -222,7 +222,7 @@ void OS::init() {
 }
 
 
-void OS::terminate(int code) {
+__self_dead void OS::terminate(int code) {
    prepare_to_exit_self();
    ::exit(code);
 }

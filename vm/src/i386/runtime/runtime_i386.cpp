@@ -34,7 +34,7 @@ bool check_saved_byte_map_base() {
 
 // cannot used simple DiscardStack (as in runtime_sparc.[sS]) because of restoring
 // nonvol registers
-void volatile DiscardStack() {
+__self_dead void DiscardStack() {
   currentProcess->abort();
 }
 
