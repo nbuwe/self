@@ -631,6 +631,30 @@ I print out as asterisks.\x7fModuleInfo: Module: scalableFont InitialContents: F
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'x11Globals' -> 'fontFamily' -> () From: ( | {
+         'Category: font substituion\x7fModuleInfo: Module: scalableFont InitialContents: FollowSlot'
+        
+         verdana = '-*-helvetica-medium-r-normal-*-'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'x11Globals' -> 'fontFamily' -> () From: ( | {
+         'Category: font substituion\x7fModuleInfo: Module: scalableFont InitialContents: FollowSlot'
+        
+         verdanaBold = '-*-helvetica-bold-r-normal-*-'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'x11Globals' -> 'fontFamily' -> () From: ( | {
+         'Category: font substituion\x7fModuleInfo: Module: scalableFont InitialContents: FollowSlot'
+        
+         verdanaBoldItalic = '-*-helvetica-bold-o-normal-*-'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'x11Globals' -> 'fontFamily' -> () From: ( | {
+         'Category: font substituion\x7fModuleInfo: Module: scalableFont InitialContents: FollowSlot'
+        
+         verdanaItalic = '-*-helvetica-medium-o-normal-*-'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'x11Globals' -> 'fontFamily' -> () From: ( | {
          'Category: classic\x7fModuleInfo: Module: scalableFont InitialContents: FollowSlot'
         
          zapfChancery = '-*-zapfchancery-medium-i-normal--'.
