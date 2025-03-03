@@ -152,7 +152,7 @@ class FlagSettingInt {
     "list of selectors that must be compiled with SIC; used during SIC development", true) \
                                                                               \
     template(SpendTimeForDebugging, bool, "<bool>", BooleanPrimType,          \
-    SPEND_TIME_FOR_DEBUGGING_BY_DEFAULT,                                      \
+    bool(SPEND_TIME_FOR_DEBUGGING_BY_DEFAULT),                                \
     (SpendTimeForDebugging ? Memory->trueObj : Memory->falseObj),             \
     ( flag == Memory->falseObj  ||                                            \
       (flag == Memory->trueObj && (GENERATE_DEBUGGING_AIDS                    \
@@ -162,7 +162,7 @@ class FlagSettingInt {
     "Slow down Self in order to ease VM debugging", true)                    \
                                                                               \
     template(CheckAssertions, bool, "<bool>", BooleanPrimType,                \
-    SPEND_TIME_FOR_DEBUGGING_BY_DEFAULT,                                      \
+    bool(SPEND_TIME_FOR_DEBUGGING_BY_DEFAULT),                                \
     (CheckAssertions ? Memory->trueObj : Memory->falseObj),                   \
     ( flag == Memory->falseObj  ||                                            \
       (flag == Memory->trueObj && (GENERATE_DEBUGGING_AIDS                    \
@@ -172,7 +172,7 @@ class FlagSettingInt {
     "turn on assertion checking in VM", true)                                 \
                                                                               \
     template(ZapResourceArea, bool, "<bool>", BooleanPrimType,                \
-    SPEND_TIME_FOR_DEBUGGING_BY_DEFAULT,                                      \
+    bool(SPEND_TIME_FOR_DEBUGGING_BY_DEFAULT),                                \
     (ZapResourceArea ? Memory->trueObj : Memory->falseObj),                   \
     ( flag == Memory->falseObj  ||                                            \
       (flag == Memory->trueObj && (GENERATE_DEBUGGING_AIDS                    \
@@ -439,7 +439,7 @@ class FlagSettingInt {
     BOOLEAN_PRIM_TEMPLATE(template, PrintFrameConversion2, false,             \
     "print details of conversion of invalidated stack frames", true)          \
                                                                               \
-    BOOLEAN_PRIM_TEMPLATE(template, WizardMode, SPEND_TIME_FOR_DEBUGGING_BY_DEFAULT, \
+    BOOLEAN_PRIM_TEMPLATE(template, WizardMode, bool(SPEND_TIME_FOR_DEBUGGING_BY_DEFAULT), \
     "wizard debugging mode", false)                                           \
     BOOLEAN_PRIM_TEMPLATE(template, WizardAbortMode, false,                   \
     "preserve fatal stack for better VM debugging", true)                     \
