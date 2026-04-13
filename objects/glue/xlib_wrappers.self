@@ -3194,7 +3194,7 @@ traits xlib window _AddSlots: ( |
 
     |
 
-      xlib window deadCopy _NULLnullWindowResultProxyIfFail: fb ).
+      xlib window deadCopy _NonenullWindowResultProxyIfFail: fb ).
 
 
 	}
@@ -3246,7 +3246,7 @@ traits xlib pixmap _AddSlots: ( |
 
     |
 
-      xlib pixmap deadCopy _NULLnullPixmapResultProxyIfFail: fb ).
+      xlib pixmap deadCopy _NonenullPixmapResultProxyIfFail: fb ).
 
 
 	}
@@ -3574,7 +3574,7 @@ traits xlib cursor _AddSlots: ( |
 
     |
 
-      xlib cursor deadCopy _NULLnullCursorResultProxyIfFail: fb ).
+      xlib cursor deadCopy _NonenullCursorResultProxyIfFail: fb ).
 
 
 	}

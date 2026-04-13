@@ -571,7 +571,7 @@ traits: traits xlib display
 traits: traits xlib window
  visibility: publicSlot
   void nullWindow \
-    	    = proxy_null Window Window_seal {xlib window deadCopy} get NULL
+    	    = proxy_null Window Window_seal {xlib window deadCopy} get None
 
 
 
@@ -584,7 +584,7 @@ traits: traits xlib window
 traits: traits xlib pixmap
  visibility: publicSlot
   void nullPixmap \
-    	    = proxy_null Pixmap Pixmap_seal {xlib pixmap deadCopy} get NULL
+    	    = proxy_null Pixmap Pixmap_seal {xlib pixmap deadCopy} get None
 
 ','
 
@@ -648,7 +648,7 @@ traits: traits xlib region
 traits: traits xlib cursor
  visibility: publicSlot
   void nullCursor \
-    	    = proxy_null Cursor Cursor_seal {xlib cursor deadCopy} get NULL
+    	    = proxy_null Cursor Cursor_seal {xlib cursor deadCopy} get None
 
 
 
