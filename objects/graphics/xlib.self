@@ -591,6 +591,7 @@ the event object and its type (an integer).\x7fModuleInfo: Module: xlib InitialC
             blk value: ee xMappingEvent           With: mappingNotify.
             blk value: ee xMotionEvent            With: motionNotify.
             blk value: ee xNoExposeEvent          With: noExpose.
+            blk value: ee xPropertyEvent          With: propertyNotify.
             blk value: ee xReparentEvent          With: reparentNotify.
             blk value: ee xUnmapEvent             With: unmapNotify.
             blk value: ee xVisibilityEvent        With: visibilityNotify.
@@ -1983,6 +1984,37 @@ SlotsToOmit: parent.
          'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
         
          parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xNoExposeEvent' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xPropertyEvent = bootstrap define: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> () ToBe: bootstrap addSlotsTo: (
+             bootstrap remove: 'parent' From:
+             globals proxy deadCopy ) From: bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals xlib events xPropertyEvent.
+
+CopyDowns:
+globals proxy. deadCopy 
+SlotsToOmit: parent.
+
+\x7fIsComplete: '.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xPropertyEvent = bootstrap setObjectAnnotationOf: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: traits xlib events xPropertyEvent.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> ().
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> () From: ( | {
@@ -4679,6 +4711,30 @@ an object with these slots:
          'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
         
          typeName = 'noexpose'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xEvent' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> () From: ( | {
+         'Category: states\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         propertyDelete = 1.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> () From: ( | {
+         'Category: states\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         propertyNewValue = 0.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xPropertyEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         typeName = 'propertyNotify'.
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xReparentEvent' -> () From: ( | {
