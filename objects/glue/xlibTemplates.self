@@ -964,6 +964,46 @@ traits: traits xlib events xReparentEvent
 
 
 
+traits: traits xlib events xSelectionClearEvent
+ visibility: publicSlot
+  XSelectionClearEvent window    = proxy Window Window_seal {xlib window deadCopy} \
+                                     getMember window
+  XSelectionClearEvent selection = proxy Atom Atom_seal {xlib atom deadCopy } \
+                                     getMember selection
+  XSelectionClearEvent time      = unsigned_long getMember time
+
+
+
+traits: traits xlib events xSelectionEvent
+ visibility: publicSlot
+  XSelectionEvent requestor = proxy Window Window_seal {xlib window deadCopy} \
+                                getMember requestor
+  XSelectionEvent selection = proxy Atom Atom_seal {xlib atom deadCopy } \
+                                getMember selection
+  XSelectionEvent target    = proxy Atom Atom_seal {xlib atom deadCopy } \
+                                getMember target
+  XSelectionEvent property  = proxy Atom Atom_seal {xlib atom deadCopy } \
+                                getMember property
+  XSelectionEvent time      = unsigned_long getMember time
+
+
+
+traits: traits xlib events xSelectionRequestEvent
+ visibility: publicSlot
+  XSelectionRequestEvent owner     = proxy Window Window_seal {xlib window deadCopy} \
+                                       getMember owner
+  XSelectionRequestEvent requestor = proxy Window Window_seal {xlib window deadCopy} \
+                                       getMember requestor
+  XSelectionRequestEvent selection = proxy Atom Atom_seal {xlib atom deadCopy } \
+                                       getMember selection
+  XSelectionRequestEvent target    = proxy Atom Atom_seal {xlib atom deadCopy } \
+                                       getMember target
+  XSelectionRequestEvent property  = proxy Atom Atom_seal {xlib atom deadCopy } \
+                                       getMember property
+  XSelectionRequestEvent time      = unsigned_long getMember time
+
+
+
 traits: traits xlib events xUnmapEvent
  visibility: publicSlot
   XUnmapEvent window = proxy Window Window_seal {xlib window deadCopy} \

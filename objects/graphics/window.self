@@ -239,6 +239,27 @@ SlotsToOmit: comment directory fileInTimeString myComment postFileIn revision su
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'simpleEventHandler' -> () From: ( | {
          'ModuleInfo: Module: window InitialContents: FollowSlot\x7fVisibility: public'
         
+         selectionClear: event = ( |
+            | event delete).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'simpleEventHandler' -> () From: ( | {
+         'ModuleInfo: Module: window InitialContents: FollowSlot\x7fVisibility: public'
+        
+         selectionNotify: event = ( |
+            | event delete).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'simpleEventHandler' -> () From: ( | {
+         'ModuleInfo: Module: window InitialContents: FollowSlot\x7fVisibility: public'
+        
+         selectionRequest: event = ( |
+            | event delete).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'simpleEventHandler' -> () From: ( | {
+         'ModuleInfo: Module: window InitialContents: FollowSlot\x7fVisibility: public'
+        
          unmapNotify: event = ( |
             | event delete).
         } | ) 

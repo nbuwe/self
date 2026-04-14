@@ -532,6 +532,33 @@ SlotsToOmit: directory fileInTimeString myComment postFileIn revision subpartNam
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'queueingEventHandler' -> () From: ( | {
          'Category: eventDispatching\x7fModuleInfo: Module: eventHandler InitialContents: FollowSlot\x7fVisibility: public'
         
+         selectionClear: event = ( |
+            | 
+            event delete.
+            self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'queueingEventHandler' -> () From: ( | {
+         'Category: eventDispatching\x7fModuleInfo: Module: eventHandler InitialContents: FollowSlot\x7fVisibility: public'
+        
+         selectionNotify: event = ( |
+            | 
+            event delete.
+            self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'queueingEventHandler' -> () From: ( | {
+         'Category: eventDispatching\x7fModuleInfo: Module: eventHandler InitialContents: FollowSlot\x7fVisibility: public'
+        
+         selectionRequest: event = ( |
+            | 
+            event delete.
+            self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'queueingEventHandler' -> () From: ( | {
+         'Category: eventDispatching\x7fModuleInfo: Module: eventHandler InitialContents: FollowSlot\x7fVisibility: public'
+        
          unmapNotify: event = ( |
             | 
             event delete.
