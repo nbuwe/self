@@ -1,8 +1,9 @@
  'Sun-$Revision: 30.8 $'
  '
-Copyright 1992-2012 AUTHORS.
-See the LICENSE file for license information.
+Copyright 1992-2026 AUTHORS.
+See the legal/LICENSE file for license information and legal/AUTHORS for authors.
 '
+["preFileIn" self] value
 
 
  '-- Module body'
@@ -481,6 +482,15 @@ SlotsToOmit: directory fileInTimeString myComment postFileIn revision subpartNam
                 collapseMotionEvents: nonX.
             ].
             nonX do: [ | :nx | msgQueue add: nx ].
+            self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'queueingEventHandler' -> () From: ( | {
+         'Category: eventDispatching\x7fModuleInfo: Module: eventHandler InitialContents: FollowSlot\x7fVisibility: public'
+        
+         propertyNotify: event = ( |
+            | 
+            event delete.
             self).
         } | ) 
 

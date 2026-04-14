@@ -942,6 +942,17 @@ traits: traits xlib events xNoExposeEvent
 
 
 
+traits: traits xlib events xPropertyEvent
+ visibility: publicSlot
+  XPropertyEvent window = proxy Window Window_seal {xlib window deadCopy} \
+                            getMember window
+  XPropertyEvent atom   = proxy Atom Atom_seal {xlib atom deadCopy } \
+                            getMember atom
+  XPropertyEvent time   = unsigned_long getMember time
+  XPropertyEvent state  = int getMember state
+
+
+
 traits: traits xlib events xReparentEvent
  visibility: publicSlot
   XReparentEvent x      = int getMember x

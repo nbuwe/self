@@ -1,6 +1,6 @@
  '30.14.1'
  '
-Copyright 1992-2016 AUTHORS.
+Copyright 1992-2026 AUTHORS.
 See the legal/LICENSE file for license information and legal/AUTHORS for authors.
 '
 ["preFileIn" self] value
@@ -220,6 +220,13 @@ SlotsToOmit: comment directory fileInTimeString myComment postFileIn revision su
          'ModuleInfo: Module: window InitialContents: FollowSlot\x7fVisibility: private'
         
          parent* = bootstrap stub -> 'traits' -> 'clonable' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'simpleEventHandler' -> () From: ( | {
+         'ModuleInfo: Module: window InitialContents: FollowSlot\x7fVisibility: public'
+        
+         propertyNotify: event = ( |
+            | event delete).
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'simpleEventHandler' -> () From: ( | {

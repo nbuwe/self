@@ -77,6 +77,7 @@ const char* XMapEvent_seal            = XEvent_seal;
 const char* XMappingEvent_seal        = XEvent_seal;
 const char* XMotionEvent_seal         = XEvent_seal;
 const char* XNoExposeEvent_seal       = XEvent_seal;
+const char* XPropertyEvent_seal       = XEvent_seal;
 const char* XReparentEvent_seal       = XEvent_seal;
 const char* XUnmapEvent_seal          = XEvent_seal;
 const char* XVisibilityEvent_seal     = XEvent_seal;
