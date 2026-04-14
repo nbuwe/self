@@ -564,6 +564,24 @@ traits: traits xlib display
   Display xFetchBytes \
     	    = string call XFetchBytes_wrap passFailHandle canAWS
 
+
+ category: selection
+  Display xGetSelectionOwner: proxy Atom Atom_seal \
+            = proxy_null Window Window_seal {xlib window deadCopy} \
+                call XGetSelectionOwner canAWS
+
+  Display xSetSelectionOwner: proxy Atom Atom_seal \
+                      Window: proxy_null Window Window_seal \
+                        Time: unsigned_long \
+            = int call XSetSelectionOwner canAWS
+
+  Display xConvertSelection: proxy Atom Atom_seal \
+                     Target: proxy Atom Atom_seal \
+                   Property: proxy Atom Atom_seal \
+                  Requestor: proxy Window Window_seal \
+                       Time: unsigned_long \
+            = int call XConvertSelection canAWS
+
 ','
 
 
