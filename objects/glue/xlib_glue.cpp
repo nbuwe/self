@@ -61,26 +61,29 @@ xTypeSealsDo(defineXTypeSeals)
 // All events need to have the same type seal. For convenience, define
 // extra names for them, so that we can write the templates more concisely.
 // E.g., can use 'XAnyEvent' instead of 'proxy {XAnyEvent *} XEvent_seal'.
-const char* XAnyEvent_seal            = XEvent_seal;
-const char* XButtonEvent_seal         = XEvent_seal;
-const char* XClientMessageEvent_seal  = XEvent_seal;
-const char* XColormapEvent_seal       = XEvent_seal;
-const char* XConfigureEvent_seal      = XEvent_seal;
-const char* XCrossingEvent_seal       = XEvent_seal;
-const char* XEnterWindowEvent_seal    = XEvent_seal;
-const char* XExposeEvent_seal         = XEvent_seal;
-const char* XFocusChangeEvent_seal    = XEvent_seal;
-const char* XGraphicsExposeEvent_seal = XEvent_seal;
-const char* XKeyEvent_seal            = XEvent_seal;
-const char* XLeaveWindowEvent_seal    = XEvent_seal;
-const char* XMapEvent_seal            = XEvent_seal;
-const char* XMappingEvent_seal        = XEvent_seal;
-const char* XMotionEvent_seal         = XEvent_seal;
-const char* XNoExposeEvent_seal       = XEvent_seal;
-const char* XPropertyEvent_seal       = XEvent_seal;
-const char* XReparentEvent_seal       = XEvent_seal;
-const char* XUnmapEvent_seal          = XEvent_seal;
-const char* XVisibilityEvent_seal     = XEvent_seal;
+const char* XAnyEvent_seal              = XEvent_seal;
+const char* XButtonEvent_seal           = XEvent_seal;
+const char* XClientMessageEvent_seal    = XEvent_seal;
+const char* XColormapEvent_seal         = XEvent_seal;
+const char* XConfigureEvent_seal        = XEvent_seal;
+const char* XCrossingEvent_seal         = XEvent_seal;
+const char* XEnterWindowEvent_seal      = XEvent_seal;
+const char* XExposeEvent_seal           = XEvent_seal;
+const char* XFocusChangeEvent_seal      = XEvent_seal;
+const char* XGraphicsExposeEvent_seal   = XEvent_seal;
+const char* XKeyEvent_seal              = XEvent_seal;
+const char* XLeaveWindowEvent_seal      = XEvent_seal;
+const char* XMapEvent_seal              = XEvent_seal;
+const char* XMappingEvent_seal          = XEvent_seal;
+const char* XMotionEvent_seal           = XEvent_seal;
+const char* XNoExposeEvent_seal         = XEvent_seal;
+const char* XPropertyEvent_seal         = XEvent_seal;
+const char* XReparentEvent_seal         = XEvent_seal;
+const char* XSelectionClearEvent_seal   = XEvent_seal;
+const char* XSelectionEvent_seal        = XEvent_seal;
+const char* XSelectionRequestEvent_seal = XEvent_seal;
+const char* XUnmapEvent_seal            = XEvent_seal;
+const char* XVisibilityEvent_seal       = XEvent_seal;
 
 
 // This class is simply a wrapper around the XSetWindowAttributes structure
