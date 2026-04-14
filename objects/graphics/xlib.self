@@ -593,6 +593,9 @@ the event object and its type (an integer).\x7fModuleInfo: Module: xlib InitialC
             blk value: ee xNoExposeEvent          With: noExpose.
             blk value: ee xPropertyEvent          With: propertyNotify.
             blk value: ee xReparentEvent          With: reparentNotify.
+            blk value: ee xSelectionClearEvent    With: selectionClear.
+            blk value: ee xSelectionEvent         With: selectionNotify.
+            blk value: ee xSelectionRequestEvent  With: selectionRequest.
             blk value: ee xUnmapEvent             With: unmapNotify.
             blk value: ee xVisibilityEvent        With: visibilityNotify.
             self).
@@ -2046,6 +2049,99 @@ SlotsToOmit: parent.
          'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
         
          parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xReparentEvent' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xSelectionClearEvent = bootstrap define: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionClearEvent' -> () ToBe: bootstrap addSlotsTo: (
+             bootstrap remove: 'parent' From:
+             globals proxy deadCopy ) From: bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionClearEvent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals xlib events xSelectionClearEvent.
+
+CopyDowns:
+globals proxy. deadCopy 
+SlotsToOmit: parent.
+
+\x7fIsComplete: '.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xSelectionClearEvent = bootstrap setObjectAnnotationOf: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionClearEvent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: traits xlib events xSelectionClearEvent.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionClearEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionClearEvent' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xSelectionEvent = bootstrap define: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionEvent' -> () ToBe: bootstrap addSlotsTo: (
+             bootstrap remove: 'parent' From:
+             globals proxy deadCopy ) From: bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionEvent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals xlib events xSelectionEvent.
+
+CopyDowns:
+globals proxy. deadCopy 
+SlotsToOmit: parent.
+
+\x7fIsComplete: '.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xSelectionEvent = bootstrap setObjectAnnotationOf: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionEvent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: traits xlib events xSelectionEvent.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionEvent' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xSelectionRequestEvent = bootstrap define: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionRequestEvent' -> () ToBe: bootstrap addSlotsTo: (
+             bootstrap remove: 'parent' From:
+             globals proxy deadCopy ) From: bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionRequestEvent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals xlib events xSelectionRequestEvent.
+
+CopyDowns:
+globals proxy. deadCopy 
+SlotsToOmit: parent.
+
+\x7fIsComplete: '.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xSelectionRequestEvent = bootstrap setObjectAnnotationOf: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionRequestEvent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: traits xlib events xSelectionRequestEvent.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> 'xSelectionRequestEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionRequestEvent' -> ().
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'events' -> () From: ( | {
@@ -4747,6 +4843,42 @@ an object with these slots:
          'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
         
          typeName = 'reparentNotify'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionClearEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xEvent' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionClearEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         typeName = 'selectionClear'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xEvent' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         typeName = 'selectionNotify'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionRequestEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xEvent' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xSelectionRequestEvent' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         typeName = 'selectionRequest'.
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'events' -> 'xUnmapEvent' -> () From: ( | {
