@@ -564,6 +564,45 @@ char *XFetchBytes_wrap(Display* display, void *FH) {
 }
 
 
+/*
+ * Return the list of window properties as a vector of atoms.
+ * In practice proto is (must be) always `xlib atom`.
+ */
+oop
+XListProperties_wrap(Display *display, Window win, oop proto, void *FH)
+{
+    int nprops = 0;
+    Atom *props = XListProperties(display, win, &nprops);
+    if (props == NULL) {
+	return Memory->objVectorObj->cloneSize(0);
+    }
+
+    oop vec = Memory->objVectorObj->cloneSize(nprops);
+    if (vec == failedAllocationOop) {
+	XFree(props);
+
+	char err[64];
+	sprintf(err, "xListProperties: failed to allocate vector of %d", nprops);
+	failure(FH, err);
+	return Memory->nilObj;
+    }
+
+    preserved returnValue(vec);
+    for (int i = 0; i < nprops; ++i) {
+	Atom atom = props[i];
+
+	proxyOop atomProxy = proxyOop(proto)->clone();
+	atomProxy->set_pointer((void *)atom);
+	atomProxy->set_type_seal((void *)Atom_seal);
+
+	vec->obj_at_put(i, atomProxy);
+    }
+
+    XFree(props);
+    return vec;
+}
+
+
 XImage* XCreateImage_wrap(Display* display, Visual* visual,
                           unsigned int depth, int format,
                           unsigned int width, unsigned int height,
