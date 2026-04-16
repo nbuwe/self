@@ -256,6 +256,15 @@ traits: traits xlib display
 	    = void call XDestroySubwindows
 
 
+ category: properties
+  // primitiveMaker can only supply magic result proxy.  Since we want
+  // to return a vector of proxies we need to pass the prototype
+  // manually.  In practive the prototype argument will always be
+  // `... As: xlib atom`
+  Display xListProperties: proxy Window Window_seal \
+                       As: oop proxy \
+            = oop call XListProperties_wrap passFailHandle canAWS
+
  category: cursor
   Display xWarpPointerSrcWindow: proxy_null Window Window_seal \
                        DestWindow: proxy_null Window Window_seal \

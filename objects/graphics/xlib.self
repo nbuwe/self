@@ -6125,6 +6125,13 @@ so all bits matter.\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fV
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'window' -> () From: ( | {
+         'Category: querying\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         properties = ( |
+            | display xListProperties: self As: xlib atom).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'window' -> () From: ( | {
          'Category: manipulating\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
         
          raise = ( |
