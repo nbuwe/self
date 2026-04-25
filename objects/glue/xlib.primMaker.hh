@@ -4836,7 +4836,7 @@ Please do not change it manually. -- dmu 12/91  */\
  C_func_4( int,, XSetSelectionOwner, XSetSelectionOwner_XSetSelectionOwner_Window_Time__glue, , proxy,(Display*,Display_seal), proxy,(Atom,Atom_seal), proxy_null,(Window,Window_seal), unsigned_long,) \
  C_func_6( int,, XConvertSelection, XConvertSelection_XConvertSelection_Target_Property_Requestor_Time__glue, , proxy,(Display*,Display_seal), proxy,(Atom,Atom_seal), proxy,(Atom,Atom_seal), proxy,(Atom,Atom_seal), proxy,(Window,Window_seal), unsigned_long,) \
  C_get_var( proxy_null,(Window,Window_seal), None, None_NullWindow_glue) \
- C_func_1( int,, MYSELF, MYSELF_WindowDescriptor_glue, , proxy_null,(int,Window_seal)) \
+ C_func_1( unsigned_int,, MYSELF, MYSELF_WindowDescriptor_glue, , proxy_null,(Window,Window_seal)) \
  C_get_var( proxy_null,(Pixmap,Pixmap_seal), None, None_NullPixmap_glue) \
 /* get atom CARD32 value  */\
 \
