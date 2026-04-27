@@ -3168,6 +3168,39 @@ SlotsToOmit: parent.
          parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'xWindowAttributes' -> ().
         } | ) 
 
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> () From: ( | {
+         'Comment: Wrapper for multiple return values of
+XGetWindowProperty(3) - an artifact of
+xlib glue code, not part of Xlib proper.\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xWindowPropertyReturns = bootstrap define: bootstrap stub -> 'globals' -> 'xlib' -> 'xWindowPropertyReturns' -> () ToBe: bootstrap addSlotsTo: (
+             bootstrap remove: 'parent' From:
+             globals proxy deadCopy ) From: bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'xlib' -> 'xWindowPropertyReturns' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals xlib xWindowPropertyReturns.
+
+CopyDowns:
+globals proxy. deadCopy 
+SlotsToOmit: parent.
+
+\x7fIsComplete: '.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         xWindowPropertyReturns = bootstrap setObjectAnnotationOf: bootstrap stub -> 'traits' -> 'xlib' -> 'xWindowPropertyReturns' -> () From: ( |
+             {} = 'ModuleInfo: Creator: traits xlib xWindowPropertyReturns.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'xlib' -> 'xWindowPropertyReturns' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'xlib' -> 'xWindowPropertyReturns' -> ().
+        } | ) 
+
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> () From: ( | {
          'Category: graphical interface\x7fCategory: graphics\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
         
@@ -3201,6 +3234,13 @@ so all bits matter.\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fV
          hash = ( |
             | 
             isLive ifTrue: [ atomValue ] False: [ 0 ]).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'atom' -> () From: ( | {
+         'Category: predefined atoms\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         none = ( |
+            | xlib atom deadCopy atomValue: 0).
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'atom' -> () From: ( | {
@@ -6145,6 +6185,17 @@ so all bits matter.\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fV
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'window' -> () From: ( | {
+         'Category: querying\x7fComment: WIP\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
+        
+         property: name = ( |
+            | 
+            display xGetWindowPropertyOf: self
+              Property: (display internAtom: name)
+              Offset: 0 Length: 1024 Delete: false
+              Type: (xlib atom none)).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'window' -> () From: ( | {
          'Category: manipulating\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: public'
         
          raise = ( |
@@ -6719,6 +6770,12 @@ so all bits matter.\x7fModuleInfo: Module: xlib InitialContents: FollowSlot\x7fV
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'xWindowAttributes' -> () From: ( | {
+         'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'proxy' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'xlib' -> 'xWindowPropertyReturns' -> () From: ( | {
          'ModuleInfo: Module: xlib InitialContents: FollowSlot\x7fVisibility: private'
         
          parent* = bootstrap stub -> 'traits' -> 'proxy' -> ().
