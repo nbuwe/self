@@ -38,6 +38,7 @@ VERIFYCHECKSUM
     template(Screen)							      \
     template(Visual)							      \
     template(Window)							      \
+    template(WindowPropertyReturns)					      \
     template(XCharStruct)						      \
     template(XColor)							      \
     template(XEvent)							      \
@@ -182,6 +183,26 @@ private:
   unsigned long 	attrMask;
   XSetWindowAttributes *winAttrs;
 };
+
+
+/*
+ * XGetWindowProperty(3) returns so many things that we need to define
+ * this structure to hold them to pass up into the Self land.
+ */
+struct WindowPropertyReturns {
+    unsigned char *data;
+    unsigned int nitems;
+    unsigned int bytesAfter;
+    Atom type;
+    int format;
+
+    ~WindowPropertyReturns() {
+	XFree(data);
+    }
+
+    oop dataVector(void *FH);
+};
+
 
 
 oop XNextEvent_wrap(Display *display, bool peek,
@@ -599,6 +620,97 @@ XListProperties_wrap(Display *display, Window win, oop proto, void *FH)
     }
 
     XFree(props);
+    return vec;
+}
+
+
+/*
+ * This is a simplistic wrapper around XGetWindowProperty that packs
+ * all its returned values into a C struct for the Self world to
+ * consume and deal with.
+ */
+WindowPropertyReturns *
+XGetWindowProperty_wrap(Display *display, Window win, Atom property,
+			unsigned int offset, unsigned int length, Bool del,
+			Atom type,
+			void *FH)
+{
+    Atom actualType;
+    int format;
+    unsigned long nitems;
+    unsigned long bytesAfter;
+    unsigned char *data;
+
+    int status;
+    status = XGetWindowProperty(display, win, property, offset, length,
+				del, type,
+				&actualType, &format,
+				&nitems, &bytesAfter,
+				&data);
+
+    if (status == BadAlloc) {
+	out_of_memory_failure(FH, length);
+	return NULL;
+    }
+
+    if (status != Success) {
+	prim_failure(FH, PRIMITIVEFAILEDERROR);
+	return NULL;
+    }
+
+    WindowPropertyReturns *r = new WindowPropertyReturns();
+    r->data = data;
+    r->nitems = nitems;
+    r->bytesAfter = bytesAfter;
+    r->type = actualType;
+    r->format = format;
+    return r;
+}
+
+
+oop
+WindowPropertyReturns::dataVector(void *FH)
+{
+    if (type == None) {
+	// property was not found
+	return Memory->nilObj;
+    }
+
+    oop vec;
+    if (format == 8) {
+	vec = Memory->byteVectorObj->cloneSize(nitems);
+	if (vec == failedAllocationOop) {
+	    out_of_memory_failure(FH, nitems);
+	    return Memory->nilObj;
+	}
+
+	byteVectorOop bv = byteVectorOop(vec);
+	for (unsigned int i = 0; i < nitems; ++i) {
+	    bv->byte_at_put(i, data[i]);
+	}
+    }
+    else {
+ 	vec = Memory->objVectorObj->cloneSize(nitems);
+	if (vec == failedAllocationOop) {
+	    out_of_memory_failure(FH, nitems);
+	    return Memory->nilObj;
+	}
+
+	objVectorOop ov = objVectorOop(vec);
+	if (format == 16) {
+	    const uint16_t *data2 = (const uint16_t *)data;
+	    for (unsigned int i = 0; i < nitems; ++i) {
+		ov->obj_at_put(i, as_smiOop(data2[i]));
+	    }
+	}
+	else {
+	    const uint32_t *data4 = (const uint32_t *)data;
+	    for (unsigned int i = 0; i < nitems; ++i) {
+		ov->obj_at_put(i, as_smiOop(data4[i]));
+	    }
+	}
+    }
+
     return vec;
 }
 

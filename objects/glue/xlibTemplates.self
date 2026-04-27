@@ -265,6 +265,18 @@ traits: traits xlib display
                        As: oop proxy \
             = oop call XListProperties_wrap passFailHandle canAWS
 
+  // XGetWindowProperty returns so many values we have to wrap them
+  // into a struct to return to the Self world.
+  Display xGetWindowPropertyOf: proxy Window Window_seal \
+                      Property: proxy Atom Atom_seal \
+                        Offset: unsigned_int \
+                        Length: unsigned_int \
+                        Delete: bool \
+                          Type: proxy_null Atom Atom_seal \
+            = WindowPropertyReturns {xlib xWindowPropertyReturns deadCopy} \
+                call XGetWindowProperty_wrap canAWS passFailHandle
+
+
  category: cursor
   Display xWarpPointerSrcWindow: proxy_null Window Window_seal \
                        DestWindow: proxy_null Window Window_seal \
@@ -1117,6 +1129,19 @@ traits: traits xlib xTextProperty
  visibility: publicSlot
   XTextProperty xStringToTextProperty: string \
     	    = int call XStringToTextProperty_wrap canAWS
+
+
+-- Auxiliary structure to return a bunch of values from
+-- XGetWindowProperty(3), see its wrapper above
+traits: traits xlib xWindowPropertyReturns
+ visibility: publicSlot
+  WindowPropertyReturns delete     = void delete
+  WindowPropertyReturns data       = oop callMember dataVector canAWS passFailHandle
+  WindowPropertyReturns nitems     = unsigned_int getMember nitems
+  WindowPropertyReturns bytesAfter = unsigned_int getMember bytesAfter
+  WindowPropertyReturns format     = int getMember format
+  WindowPropertyReturns type       = proxy_null Atom Atom_seal {xlib atom deadCopy} \
+                                       getMember type
 
 
 traits: traits xlib xWindowAttributes
